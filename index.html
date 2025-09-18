@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coco Peat Business – Comprehensive Financial Report & Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<!-- External Library for Charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{
+--primary-color:#556B2F; --secondary-color:#8FBC8F; --accent-color:#D2B48C;
+--text-color:#3D403A; --light-bg:#F5F5DC; --container-bg:rgba(255,255,255,.97);
+--border-color:rgba(0,0,0,.1); --shadow:0 10px 35px 0 rgba(135,135,135,.1);
+--font-heading:'Playfair Display',serif; --font-body:'Lato',sans-serif;
+--profit-color:#556B2F; --loss-color:#A0522D; --warning-bg: #fffbe6; --warning-border: #ffe58f;
+--best-case-bg: #f6ffed; --best-case-border: #b7eb8f;
+--worst-case-bg: #fff1f0; --worst-case-border: #ffa39e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior: smooth;}
+body{font-family:var(--font-body);line-height:1.8;color:var(--text-color);
+background:linear-gradient(170deg,#F0F2EB 0%,#E6E8E1 100%);
+-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.container{max-width:960px;margin:40px auto;background:var(--container-bg);
+border-radius:20px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.3);
+padding:40px 60px}
+.content-section{padding:40px 0;border-bottom:1px solid var(--border-color)}
+.content-section:last-of-type{border-bottom:none}
+h1,h2,h3{font-family:var(--font-heading);color:var(--primary-color);font-weight:700}
+h1{font-size:3em;margin-bottom:10px;line-height:1.2}
+h2{font-size:2.2em;margin-bottom:30px;padding-bottom:15px;border-bottom:2px solid var(--secondary-color)}
+h3{font-size:1.6em;margin-bottom:20px}
+h4{font-size:1.2em;margin-bottom:15px;color: var(--primary-color);}
+p{margin-bottom:1.4em;font-weight:400;font-size:1.05em;text-align:justify}
+strong{font-weight:700}
+a{color:var(--primary-color);text-decoration:none;font-weight:700;}
+a:hover{text-decoration:underline}
+.header{text-align:center;padding-bottom:30px}
+.header .subtitle{font-size:1.2em;color:#555;font-weight:400}
+.grid{display:grid;gap:24px}
+.grid.two{grid-template-columns:1fr 1fr}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.card{background:rgba(255,255,255,.7);border:1px solid var(--border-color);
+border-radius:16px;padding:25px;box-shadow:0 4px 15px rgba(0,0,0,.04); transition: transform 0.3s ease, box-shadow 0.3s ease;}
+.card:hover {transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,.08);}
+.muted{color:#666;font-size:.95em}
+.table{width:100%;border-collapse:separate;border-spacing:0;margin-top:20px;
+font-size:.95em;border:1px solid var(--border-color);border-radius:12px;overflow:hidden; box-shadow: var(--shadow);}
+.table th,.table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border-color)}
+.table th{background:#F0F2EB;color:var(--primary-color);font-weight:700;letter-spacing:.5px;font-size:.9em;text-transform:uppercase}
+.table tfoot td{font-weight:700;background:rgba(143,188,143,.15)}
+.small{font-size:.9em}
+.note{background:var(--warning-bg);border-left: 5px solid var(--warning-border);border-radius:8px;padding:15px 20px;font-size:.95em; margin: 20px 0;}
+.inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:15px}
+.input-wrapper{position: relative;}
+.input-wrapper label {font-size:.9em;color:#333; display:flex; align-items:center; margin-bottom:5px; font-weight:700;}
+.input-wrapper input{width:100%;padding:10px;border:1px solid #d6d6d6;border-radius:8px;background:white; font-size:1em; transition: border-color 0.3s ease, box-shadow 0.3s ease;}
+.input-wrapper input:focus {border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(85, 107, 47, 0.2);}
+.btn{margin-top:10px;display:inline-block;background:var(--primary-color);color:#fff;border:none;padding:12px 18px;border-radius:8px;cursor:pointer; font-weight: bold; font-size: 0.9em; transition: background-color 0.3s ease, transform 0.2s ease;}
+.btn:hover {background-color: #445625; transform: translateY(-2px);}
+.btn-group{display:flex;flex-wrap: wrap; gap:10px;align-items:center;margin-top:20px}
+.btn.secondary{background-color:#8FBC8F; color:#fff}.btn.secondary:hover{background-color:#79a079}
+.btn.tertiary{background-color:#D2B48C;color:#3D403A}.btn.tertiary:hover{background-color:#c8a77a}
+.profit{color:var(--profit-color);font-weight:700;}.loss{color:var(--loss-color);font-weight:700;}
+.footer{text-align:center;margin-top:40px;padding-top:20px;font-size:.9em;color:#999}
+.scenario-card h4 { display: flex; align-items: center; }
+.scenario-card svg { margin-right: 10px; flex-shrink: 0;}
+.best-case { border-top: 5px solid var(--best-case-border); background: var(--best-case-bg);}
+.worst-case { border-top: 5px solid var(--worst-case-border); background: var(--worst-case-bg);}
+.default-case { border-top: 5px solid var(--warning-border); background: var(--warning-bg);}
+.info-icon { display: inline-block; width: 16px; height: 16px; margin-left: 8px; background-color: var(--secondary-color); color: white; border-radius: 50%; text-align: center; font-style: normal; font-weight: bold; line-height: 16px; font-size: 12px; cursor: help; user-select: none; transition: background-color 0.3s ease;}
+.info-icon:hover { background-color: var(--primary-color); }
+.tooltip { visibility: hidden; opacity: 0; width: 220px; background-color: var(--text-color); color: #fff; text-align: left; border-radius: 6px; padding: 10px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -110px; transition: opacity 0.3s; font-size: 0.85em; font-weight: 400; line-height: 1.5; box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
+.tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: var(--text-color) transparent transparent transparent;}
+.input-wrapper:hover .tooltip, .input-wrapper .info-icon:focus + .tooltip { visibility: visible; opacity: 1;}
+@media (max-width:768px){h1{font-size:2.2em}h2{font-size:1.6em}.container{margin:20px;padding:30px}.grid.two,.grid.three{grid-template-columns:1fr}.inputs{grid-template-columns:1fr}.btn-group{flex-direction:column;align-items:stretch}}
+</style>
+</head>
+<body>
+<main class="container">
+<header class="header">
+<h1>Coco Peat Business Financial Plan</h1>
+<div class="subtitle">An Interactive Analysis of Cost, Profitability, and Risk</div>
+<p class="muted" style="text-align:center;margin-top:8px">This report models the export of one 20-foot container of 5kg coco peat blocks from Tamil Nadu, India, to Los Angeles, USA.</p>
+</header>
+
+<!-- Executive Summary -->
+<section class="content-section">
+  <h2>Executive Summary</h2>
+  <div class="card">
+      <h3>The Business Case</h3>
+      <p>This analysis confirms the viability of exporting coco peat to the high-demand Southern California market. The model is built on personally collected, real-world data for all operational costs, providing a grounded and realistic financial projection.</p>
+      <h3>Critical Factor: The Current 50% U.S. Tariff</h3>
+      <p>The central challenge facing this business is the **current and active 50% tariff levied by the U.S. on goods imported from India.** This is not a hypothetical risk but a real-world cost that significantly impacts profitability. It is the single largest expense after the cost of the product itself.</p>
+      <h3>The Bottom Line: Viable, With Strategic Imperatives</h3>
+      <p>Despite the severe impact of the tariff, this analysis demonstrates that the business remains profitable. The default "Current Reality" scenario projects:</p>
+      <ul class="note">
+          <li>A <strong>Total Landed Cost of <span id="summary_landed_cost">$8.15</span> per 5kg block</strong>.</li>
+          <li>A healthy **Wholesale Gross Margin of <span id="summary_margin">29.1%</span>** when selling at our target price of $11.50.</li>
+          <li>A potential <strong>Monthly Net Profit of over <span id="summary_profit">$11,000</span></strong> from a single container.</li>
+      </ul>
+       <p class="note">This confirms the business is viable even under the current challenging tariff regime. However, it underscores the critical importance of operational efficiency, securing volume sales, and advocating for trade policies that could revert the tariff to 0%, which would unlock significantly higher profitability (as shown in the Best-Case Scenario).</p>
+    </div>
+</section>
+
+<!-- New Strategic Summary Section -->
+<section class="card" style="background: #f7f9f5; padding: 40px; border-radius: 16px; margin: 20px 0;">
+    <h2>Strategic Summary & The Market Opportunity</h2>
+    <div>
+        <h4>Summary of Scenarios & Assumptions</h4>
+        <p class="small">This report is built on **personally collected, real-world data** and centers on the **current, active 50% U.S. tariff on Indian goods**. Our analysis explores three key outcomes:</p>
+        <ul class="note">
+            <li><strong>Default Case:</strong> Shows solid profitability even with the 50% tariff.</li>
+            <li><strong>Best Case:</strong> Reveals a massive profit opportunity if the tariff is reverted to 0%.</li>
+            <li><strong>Worst Case:</strong> Confirms the business can survive (though with minimal profit) even if multiple negative market factors occur simultaneously.</li>
+        </ul>
+
+        <h4>Our Takeaway: The Opportunity in Volatility</h4>
+        <p>The current 50% tariff, while a significant financial hurdle, has created a unique and powerful strategic opportunity. Many established Indian exporters are now **anxious and hesitant**. Their business models, built on 0% tariffs, are suddenly unprofitable, leading them to slow down or halt shipments. This has created **fear and uncertainty in the market, resulting in a supply chain void.**</p>
+        <p>This is the perfect moment for a **newcomer to enter the market.** Our business model is being built from the ground up with the 50% tariff already factored in. We are not trying to adapt an old, broken model; we are creating a new, resilient one. We can provide U.S. buyers with what they need most right now: **a stable, reliable supply of high-quality product with clear, predictable pricing.**</p>
+        <p>By establishing our business and building a loyal customer base during this "market storm," we will be in an incredibly strong position. When the trade environment eventually stabilizes and the tariff is potentially reduced or removed, our already-thriving business will become **exceptionally fruitful**, capturing the full benefit of the improved margins.</p>
+    </div>
+</section>
+
+<!-- Scenarios -->
+<section class="content-section">
+    <h2>Scenario Analysis & Strategic Implications</h2>
+    <p class="muted small">The buttons in the calculator load the three scenarios detailed below. This analysis explains what each scenario means for the business, outlining the challenges and opportunities tied to different market conditions.</p>
+    <div class="grid three">
+        <div class="card scenario-card default-case">
+            <h4>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="#D48806"/></svg>
+                Default Case: Current Reality
+            </h4>
+            <p class="small">This scenario uses our most realistic, data-backed estimates for all variables, including the active 50% tariff. It represents our baseline operational plan.</p>
+            <p class="small"><strong>Implication:</strong> Profitability is solid, but margins are tight. Success in this environment depends on disciplined cost control, operational efficiency, and securing consistent, high-volume wholesale orders. There is little room for error in pricing or logistics.</p>
+        </div>
+        <div class="card scenario-card best-case">
+            <h4>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#389E0D"/></svg>
+                Best-Case: The Opportunity
+            </h4>
+            <p class="small">This optimistic scenario is built on one crucial assumption: **the 50% tariff is reverted to 0%.** It also includes other favorable conditions like lower freight costs and a strong dollar.</p>
+            <p class="small"><strong>Implication:</strong> This is a game-changer. The landed cost would plummet, and margins would expand dramatically. This would provide immense strategic flexibility: we could lower prices to aggressively capture market share, invest more in marketing, or simply realize significantly higher profits.</p>
+        </div>
+        <div class="card scenario-card worst-case">
+            <h4>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="#D4380D"/></svg>
+                Worst-Case: The Challenge
+            </h4>
+            <p class="small">This scenario stress-tests the business by combining the 50% tariff with multiple negative factors: high shipping costs, an unfavorable exchange rate, and a depressed **wholesale price of only $8.00.**</p>
+            <p class="small"><strong>Implication:</strong> The business barely remains profitable, with razor-thin margins. This highlights the importance of negotiating fixed-price contracts to protect against volatility. It proves the model's resilience but shows that a combination of negative events would pose a significant challenge.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Assumptions & Calculator -->
+<section class="content-section">
+  <h2>Financial Model & Interactive Calculator</h2>
+  <div class="card">
+    <p class="muted">This calculator drives the entire report. It is pre-filled with the real-world data I have personally collected. All tables and charts below will update automatically when you change a value here. Hover over or click the ⓘ icon for a detailed description of each item.</p>
+    <div class="inputs" id="calc_inputs">
+      <!-- Input fields will be dynamically populated by JS -->
+    </div>
+    <div class="btn-group">
+        <button class="btn" id="default_case">Load Defaults</button>
+        <button class="btn secondary" id="best_case">Load Best-Case</button>
+        <button class="btn tertiary" id="worst_case">Load Worst-Case</button>
+        <button class="btn quaternary" id="toggle_currency">Toggle Currency ($/₹)</button>
+    </div>
+  </div>
+
+  <div class="grid two" style="margin-top:40px">
+    <div class="card">
+      <h3>Detailed Landed Cost per 5kg Block</h3>
+      <p class="muted small" style="text-align:left; margin-bottom:10px;">This table shows every single cost that goes into one 5kg block, from the factory floor to the U.S. warehouse. The 50% tariff is the largest single expense after the product itself.</p>
+      <table class="table" id="cost_table">
+        <thead><tr><th>Cost Component</th><th id="cost_table_currency_header">Value per Block (US$)</th></tr></thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr><td><strong>Total Landed Cost per Block</strong></td><td id="total_landed">$—</td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Landed Cost Breakdown</h3>
+      <p class="muted small" style="text-align:left; margin-bottom:10px;">This chart visualizes the major cost categories. It clearly shows the significant impact of the current tariff on the overall cost structure.</p>
+       <canvas id="cost_chart"></canvas>
+    </div>
+  </div>
+
+   <div class="grid two" style="margin-top:40px">
+     <div class="card">
+      <h3>Profitability & Margin Analysis</h3>
+       <p class="muted small" style="text-align:left; margin-bottom:10px;">This table calculates our potential profit on each block sold. It separates the analysis for bulk wholesale deals and individual retail sales.</p>
+      <table class="table" id="margin_table">
+        <thead><tr><th>Sales Channel</th><th id="margin_table_sell_header">Sell $/block</th><th id="margin_table_net_header">Net Profit $/block</th><th>Gross Margin</th></tr></thead>
+        <tbody>
+            <tr><td>Wholesale</td><td id="wh_sell_price">$—</td><td id="wh_net_profit">$—</td><td id="wh_gm">%</td></tr>
+            <tr><td>Retail (net of fees)</td><td id="rt_sell_price">$—</td><td id="rt_net_profit">$—</td><td id="rt_gm">%</td></tr>
+        </tbody>
+        <tfoot><tr><td>Weighted Average Profit</td><td id="w_sell">$—</td><td id="w_net">$—</td><td id="w_gm">—%</td></tr></tfoot>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Per-Container & Monthly Profit Projection</h3>
+       <p class="muted small" style="text-align:left; margin-bottom:10px;">This table scales up the per-block numbers to show the total potential profit from one shipping container and a projection for monthly earnings after all business overheads are paid.</p>
+      <table class="table" id="container_table">
+        <thead><tr><th>Metric</th><th id="projection_table_currency_header">Value</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:40px">
+      <h3>Monthly Operational Overrides</h3>
+      <p class="muted small">The inputs here relate to the ongoing, scaled-up business operations. Adjusting these values will only affect the "Monthly Net Profit" calculation in the projection table above.</p>
+    <div class="inputs" id="override_inputs">
+       <!-- Override Input fields will be dynamically populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Business Context Sections -->
+<section class="content-section">
+    <h2>Business Context & Strategy</h2>
+    <p class="muted small" style="text-align:left;">The following sections provide the strategic context for the financial numbers above, explaining the supply chain, target market, and legal requirements for the business.</p>
+    <div class="grid three">
+        <div class="card">
+            <h4 style="margin-bottom:10px;">Logistics & Supply Chain</h4>
+            <p class="small">Our supply chain is designed for cost-efficiency and reliability. The process involves three key stages: 1) <strong>Origin Services</strong> in India, including production and trucking to Tuticorin Port; 2) <strong>Ocean Transit</strong> via a 20' container to the Port of Los Angeles; and 3) <strong>Destination Services</strong> in the U.S., including customs clearance, drayage to a warehouse, and storage.</p>
+        </div>
+        <div class="card">
+            <h4 style="margin-bottom:10px;">Marketability & Competition</h4>
+            <p class="small">Demand for coco peat in California is driven by three powerful trends: stringent water conservation laws, a massive hydroponics and legal cannabis industry, and a consumer shift towards sustainable gardening products. While competitors exist, our strategy is to differentiate on verified quality (low salt content), reliable local stock for fast delivery, and competitive pricing aimed at high-volume B2B customers like nurseries and commercial growers.</p>
+        </div>
+        <div class="card">
+            <h4 style="margin-bottom:10px;">Compliance & Approvals</h4>
+            <p class="small">The business will operate in strict compliance with all Indian export and U.S. import regulations. Key requirements include obtaining an Importer-Exporter Code (IEC) in India and ensuring every shipment is accompanied by a <strong>Phytosanitary Certificate</strong> to meet U.S. Department of Agriculture (USDA) standards. Our model correctly includes the active 50% tariff as a primary cost.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+  <p>Prepared by <strong>Vijay Malaichamy Sathappan</strong> · Amara Coconuts · Natham, Tamil Nadu</p>
+</footer>
+
+</main>
+<script>
+// --- GLOBAL VARS ---
+let costChart;
+let currentCurrency = 'USD'; // 'USD' or 'INR'
+
+// --- DEFAULT DATA with DESCRIPTIONS for TOOLTIPS (from original HTML) ---
+const defaultInputs = {
+    inr_per_kg: { label: "Ex-factory cost (₹/kg)", value: 58, step: 1, desc: "The cost for one kilogram of A-grade coco peat directly from the factory in India." },
+    inland_inr_cntr: { label: "Inland Haulage (₹/container)", value: 75000, step: 1000, desc: "The total cost to transport one full 20' container by truck from the factory to Tuticorin port." },
+    port_inr_cntr: { label: "Port Handling (₹/container)", value: 55000, step: 1000, desc: "All fees at the Indian port, including container stuffing, handling charges, and documentation." },
+    ocean_usd: { label: "Ocean Freight (US$/20')", value: 3500, step: 100, desc: "The cost to ship one 20-foot container from Tuticorin, India to Los Angeles, USA." },
+    us_port_usd: { label: "US Customs & Clearance (US$)", value: 1100, step: 50, desc: "Fees paid in the U.S. for customs brokerage, import filings (like ISF), and other port fees." },
+    dray_usd: { label: "Drayage (US$/container)", value: 650, step: 25, desc: "The cost to move the container by truck from the Port of Los Angeles to our designated local warehouse." },
+    wh_usd_mo: { label: "Warehouse Cost (US$/month)", value: 2200, step: 100, desc: "The total monthly cost for storing the contents of one container in a warehouse." },
+    fx: { label: "FX Rate (₹ per US$)", value: 87.95, step: 0.5, desc: "The foreign exchange rate used to convert Indian Rupees (₹) to U.S. Dollars ($)." },
+    kg_per_block: { label: "Kg per Block", value: 5, step: 0.1, desc: "The weight of a single compressed coco peat block." },
+    blocks_per_cntr: { label: "Blocks per Container", value: 4000, step: 50, desc: "The total number of 5kg blocks that can be loaded into one 20-foot shipping container." },
+    months_hold: { label: "Months Inventory Held", value: 1, step: 0.5, desc: "The average time (in months) the inventory is stored in the warehouse before being sold." },
+    ins_pct: { label: "Insurance (% of CIF Value)", value: 1, step: 0.1, desc: "The premium for marine cargo insurance, calculated as a percentage of the total value of the goods plus shipping (CIF)." },
+    tariff_pct: { label: "Current India Tariff (%)", value: 50, step: 1, desc: "The current, active U.S. tariff on goods from India, calculated on the CIF value. This is a major cost factor." },
+    wh_price: { label: "Wholesale Sell Price (US$)", value: 11.5, step: 0.25, desc: "The price we will sell one block for to business customers like nurseries and distributors." },
+    rt_price: { label: "Retail Sell Price (US$)", value: 20.0, step: 0.5, desc: "The price a consumer would pay for one block. This is before any marketplace fees." },
+    retail_share: { label: "% Blocks to Retail", value: 25, step: 5, desc: "The percentage of our inventory we plan to sell directly to consumers, with the rest going to wholesale." },
+    rt_fee_pct: { label: "Retail Channel Fees (%)", value: 15, step: 1, desc: "Fees charged by marketplaces like Amazon, calculated as a percentage of the retail price." }
+};
+
+
+const defaultOverrides = {
+    cntrs_per_mo: { label: "Containers per Month", value: 1, step: 1, desc: "The number of containers we plan to import and sell each month." },
+    fixed_us_overhead: { label: "Monthly Fixed Overhead (US$)", value: 800, step: 50, desc: "Ongoing monthly costs in the U.S. that don't change with sales, such as insurance, accounting, etc." },
+    mkt_per_cntr: { label: "Sales/Marketing per Container (US$)", value: 250, step: 25, desc: "The estimated marketing budget allocated to selling the contents of one container." },
+    wc_cost_pct: { label: "Working Capital Cost (%/mo)", value: 1, step: 0.25, desc: "The monthly cost of capital (e.g., loan interest) tied up in inventory value." }
+};
+
+// --- UTILITY FUNCTIONS ---
+function formatCurrency(usdValue, decimals = 2) {
+    if (isNaN(usdValue)) return '$--.--';
+    const fxRate = val('fx');
+    if (currentCurrency === 'INR') {
+        const inrValue = usdValue * fxRate;
+        return '₹' + inrValue.toLocaleString('en-IN', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    }
+    return '$' + usdValue.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+}
+
+function pct(x){return (isFinite(x) ? x : 0).toFixed(1) + '%'}
+function val(id){return parseFloat(document.getElementById(id).value || 0)}
+function setVal(id, value){document.getElementById(id).value=value}
+function colorize(el, val) {
+    el.classList.remove('profit', 'loss');
+    if (val > 0) el.classList.add('profit');
+    else if (val < 0) el.classList.add('loss');
+}
+
+// --- CORE CALCULATION LOGIC ---
+function recalc() {
+    const values = {};
+    [...Object.keys(defaultInputs), ...Object.keys(defaultOverrides)].forEach(id => {
+        const inputEl = document.getElementById(id);
+        if (inputEl) values[id] = parseFloat(inputEl.value || 0);
+    });
+
+    const {
+        inr_per_kg, fx, kg_per_block, blocks_per_cntr, inland_inr_cntr, port_inr_cntr,
+        ocean_usd, us_port_usd, dray_usd, wh_usd_mo, months_hold, ins_pct,
+        tariff_pct, wh_price, rt_price, retail_share, rt_fee_pct,
+        cntrs_per_mo, fixed_us_overhead, mkt_per_cntr, wc_cost_pct
+    } = values;
+
+    const ex_factory_usd = (inr_per_kg * kg_per_block) / fx;
+    const india_logistics_usd = ((inland_inr_cntr + port_inr_cntr) / fx) / blocks_per_cntr;
+    const ocean_freight_usd = ocean_usd / blocks_per_cntr;
+    
+    const cost_and_freight = ex_factory_usd + india_logistics_usd + ocean_freight_usd;
+    const insurance_usd = cost_and_freight * (ins_pct / 100);
+    const cif_value = cost_and_freight + insurance_usd;
+
+    const tariff_usd = cif_value * (tariff_pct / 100);
+    const us_clearance_usd = us_port_usd / blocks_per_cntr;
+    const drayage_usd = dray_usd / blocks_per_cntr;
+    const holding_usd = (wh_usd_mo * months_hold) / blocks_per_cntr;
+
+    const total_landed = cif_value + tariff_usd + us_clearance_usd + drayage_usd + holding_usd;
+
+    const retailShare = retail_share / 100;
+    const wholesale_net = wh_price - total_landed;
+    const retail_net_revenue = rt_price * (1 - (rt_fee_pct / 100));
+    const retail_net_profit = retail_net_revenue - total_landed;
+    
+    const weighted_net = (wholesale_net * (1 - retailShare)) + (retail_net_profit * retailShare);
+    const weighted_sell_price = (wh_price * (1 - retailShare)) + (rt_price * retailShare);
+    
+    const wholesale_gm = (wholesale_net / wh_price) * 100;
+    const retail_gm = (retail_net_profit / retail_net_revenue) * 100;
+    const weighted_gm = (weighted_net / weighted_sell_price) * 100;
+
+    const container_gross_profit = weighted_net * blocks_per_cntr;
+    const inv_value = total_landed * blocks_per_cntr;
+    const wc_cost = inv_value * (wc_cost_pct / 100) * months_hold;
+    const monthly_profit = (container_gross_profit * cntrs_per_mo) - fixed_us_overhead - (mkt_per_cntr * cntrs_per_mo) - wc_cost;
+
+    // --- Update UI ---
+    document.getElementById('summary_landed_cost').textContent = formatCurrency(total_landed, 2);
+    document.getElementById('summary_margin').textContent = pct(wholesale_gm);
+    document.getElementById('summary_profit').textContent = formatCurrency(monthly_profit, 0);
+
+    const currencySymbol = currentCurrency === 'USD' ? '$' : '₹';
+    document.getElementById('cost_table_currency_header').textContent = `Value per Block (${currencySymbol})`;
+    document.getElementById('margin_table_sell_header').textContent = `Sell ${currencySymbol}/block`;
+    document.getElementById('margin_table_net_header').textContent = `Net Profit ${currencySymbol}/block`;
+    document.getElementById('projection_table_currency_header').textContent = `Value (${currencySymbol})`;
+
+    const costRowsData = [
+        {label: 'Ex-Factory & India Logistics', value: ex_factory_usd + india_logistics_usd},
+        {label: 'Ocean Freight & Insurance', value: ocean_freight_usd + insurance_usd},
+        {label: `Current ${tariff_pct}% Tariff`, value: tariff_usd, id: 'tariff_row_label'},
+        {label: 'U.S. Port, Drayage & Holding', value: us_clearance_usd + drayage_usd + holding_usd}
+    ];
+    document.querySelector('#cost_table tbody').innerHTML = costRowsData.map(r => `<tr><td id="${r.id || ''}">${r.label}</td><td>${formatCurrency(r.value)}</td></tr>`).join('');
+    document.getElementById('total_landed').textContent = formatCurrency(total_landed);
+    document.getElementById('tariff_row_label').textContent = `Current ${val('tariff_pct')}% Tariff`;
+
+    document.getElementById('wh_sell_price').textContent = formatCurrency(wh_price);
+    document.getElementById('rt_sell_price').textContent = formatCurrency(retail_net_revenue);
+    document.getElementById('wh_net_profit').textContent = formatCurrency(wholesale_net);
+    document.getElementById('rt_net_profit').textContent = formatCurrency(retail_net_profit);
+    document.getElementById('wh_gm').textContent = pct(wholesale_gm);
+    document.getElementById('rt_gm').textContent = pct(retail_gm);
+    document.getElementById('w_sell').textContent = formatCurrency(weighted_sell_price);
+    document.getElementById('w_net').textContent = formatCurrency(weighted_net);
+    document.getElementById('w_gm').textContent = pct(weighted_gm);
+    colorize(document.getElementById('wh_net_profit'), wholesale_net);
+    colorize(document.getElementById('rt_net_profit'), retail_net_profit);
+    colorize(document.getElementById('w_net'), weighted_net);
+
+    document.querySelector('#container_table tbody').innerHTML = [
+        ['Container Gross Profit', container_gross_profit],
+        ['Inventory Working Capital Cost', wc_cost],
+        ['Monthly Net Profit (Est.)', monthly_profit]
+    ].map(r => `<tr><td>${r[0]}</td><td id="${r[0].replace(/[\s().]/g, '')}">${formatCurrency(r[1])}</td></tr>`).join('');
+    colorize(document.getElementById('MonthlyNetProfitEst'), monthly_profit);
+
+    const chartData = costRowsData.filter(item => item.value >= 0);
+    const ctx = document.getElementById('cost_chart').getContext('2d');
+    if (costChart) costChart.destroy();
+    costChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: chartData.map(r => r.label.replace(` ${val('tariff_pct')}%`, '')),
+            datasets: [{ data: chartData.map(r => r.value), backgroundColor: ['#556B2F', '#8FBC8F', '#A0522D', '#D2B48C'], borderColor: 'rgba(255,255,255,.9)', borderWidth: 2 }]
+        },
+        options: {
+            responsive: true, animation: { duration: 0 },
+            plugins: { legend: { position: 'bottom', labels:{font:{size:10}} }, tooltip: { callbacks: { label: (c) => `${c.label}: $${(c.raw).toFixed(2)} (${(100 * c.raw / c.chart.getDatasetMeta(0).total).toFixed(1)}%)` } } }
+        }
+    });
+}
+
+// --- Event Handlers ---
+function loadDefaults() { Object.keys(defaultInputs).forEach(id => setVal(id, defaultInputs[id].value)); Object.keys(defaultOverrides).forEach(id => setVal(id, defaultOverrides[id].value)); recalc(); }
+function loadBestCase() { loadDefaults(); setVal('inr_per_kg', 55); setVal('fx', 90); setVal('ocean_usd', 3000); setVal('tariff_pct', 0); setVal('wh_price', 13.0); recalc(); }
+function loadWorstCase() { loadDefaults(); setVal('inr_per_kg', 62); setVal('fx', 85); setVal('ocean_usd', 4000); setVal('dray_usd', 850); setVal('months_hold', 2.5); setVal('tariff_pct', 50); setVal('wh_price', 8.0); recalc(); }
+function toggleCurrency() { currentCurrency = (currentCurrency === 'USD') ? 'INR' : 'USD'; recalc(); }
+
+// --- Initialization ---
+document.addEventListener('DOMContentLoaded', () => {
+    const inputsContainer = document.getElementById('calc_inputs');
+    const overridesContainer = document.getElementById('override_inputs');
+    
+    function createInputs(container, inputsObject) {
+        Object.entries(inputsObject).forEach(([id, item]) => {
+            const inputHTML = `
+                <div class="input-wrapper">
+                    <label for="${id}">
+                        ${item.label}
+                        <i class="info-icon" tabindex="0">i</i>
+                        <span class="tooltip">${item.desc}</span>
+                    </label>
+                    <input id="${id}" type="number" value="${item.value}" step="${item.step}">
+                </div>`;
+            container.innerHTML += inputHTML;
+        });
+    }
+
+    createInputs(inputsContainer, defaultInputs);
+    createInputs(overridesContainer, defaultOverrides);
+    
+    document.getElementById('default_case').addEventListener('click', loadDefaults);
+    document.getElementById('best_case').addEventListener('click', loadBestCase);
+    document.getElementById('worst_case').addEventListener('click', loadWorstCase);
+    document.getElementById('toggle_currency').addEventListener('click', toggleCurrency);
+
+    document.querySelectorAll('.inputs input').forEach(input => {
+        input.addEventListener('input', recalc);
+    });
+
+    loadDefaults();
+});
+</script>
+</body>
+</html>
